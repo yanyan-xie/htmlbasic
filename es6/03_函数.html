@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.传入默认值方法
+       function add(a = 10,b = 20){
+        return a + b;
+       } 
+       console.log(add());
+
+       //2.默认表达式也可以是一个函数
+       function add1(a,b=getVal(5)){
+        return a + b;
+       }
+       function getVal(val){
+        return val + 5;
+       }
+       console.log(add1(10));
+
+       //3.剩余参数：由...和一个紧跟的具名参数指定 ...keys
+       function pick(obj,...keys){
+        //解决了arguements的问题
+        let result = Object.create(null);
+        for (let i = 0; i < keys.length; i++){
+            result[keys[i]] = obj[keys[i]];
+        }
+        return result;
+       }
+       let book = {
+        ti:'dd',
+        au:'faf',
+        year:2022
+       }
+       let bookData = pick(book,'ti','au','year')
+       console.log(bookData);
+
+       //4.扩展运算符
+       //剩余运算符：把多个独立的合并到一个数组中
+       //扩展运算符：讲一个数组分割，并将各个项作为分离的参数传给函数
+       const arr = [30,29,49,28,59,19];
+       console.log(Math.max(...arr));
+
+       //5.箭头函数  function(){} 相等  ()=>{} 没有this指向，它中的内部作用值只能通过查抄作用域链
+       //一旦使用箭头函数当前就不存在作用域
+       //使用箭头函数注意事项：
+       //   (1)使用箭头函数函数内部没有arguements
+       //   (2)箭头函数不能使用new关键字来实例化对象
+       //function函数也是一个对象，但尽头函数不是
+       //let add = (val1,val2) => val1 + val2;表示可直接返回两个参数的和
+       let add2 = (a,b)=>{
+        return a + b;
+       }
+       console.log(add2(30,20));
+
+    </script>
+</body>
+</html>

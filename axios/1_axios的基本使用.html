@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.0.0-alpha.1/axios.js"></script>
+</head>
+<body>
+    <!-- 1.axios调用的返回值是Promise实例
+         2.成功的值叫response，失败的叫error
+         3.axios 成功的值是一个axios封装的response对象，服务器返回的真实数据在response.data中
+         4.携带query参数的配置项叫做params
+         5.携带params 需要自己拼接
+        -->
+    
+    <button id="btn1">点击获取所有人信息</button><br/><br/>
+    <button id="btn2">点击获取个人信息</button><br/>
+    <input id="person_id" type="text" placeholder="请输入一个人的id"><br/><br/>
+    <button id="btn3">点击添加个人信息</button><br/>
+    <input id="person_name" type="text" placeholder="请输入名字"><br/>
+    <input id="person_age" type="text" placeholder="请输入年龄"><br/><br/>
+    <button id="btn4">点击更新一个人的信息</button><br/>
+    <input id="person_update_id" type="text" placeholder="请输入一个人的id"><br/>
+    <input id="person_update_name" type="text" placeholder="请输入一个人的名字"><br/>
+    <input id="person_update_age" type="text" placeholder="请输入一个人的年龄"><br/><br/>
+    <button id="btn5">点击删除某个人的信息</button><br/>
+    <input id="person_delete_id" type="text" placeholder="请输入id">
+
+    <script type="text/javascript">
+        //获取按钮
+        const btn1 = document.getElementById('btn1')
+        const btn2 = document.getElementById('btn2')
+        const btn3 = document.getElementById('btn3')
+        const btn4 = document.getElementById('btn4')
+        const btn5 = document.getElementById('btn5')
+        const personId = document.getElementById('person_id')
+        const personName = document.getElementById('person_name')
+        const personAge = document.getElementById('person_age')
+        const personUpdateId = document.getElementById('person_update_id')
+        const personUpdateName = document.getElementById('person_update_name')
+        const personUpdateAge = document.getElementById('person_update_age')
+        const personDeleteId = document.getElementById('person_delete_id')
+
+        //获取所有人的信息--发送GET请求--不携带参数
+        btn1.onclick = () => {
+            //完整版
+            // axios({
+            //     url:'',//请求地址
+            //     method:'GET'//请求方式
+            // }).then(
+            //     response => {console.log('请求成功'),response.data},//成功获取的值
+            //     error => {console.log('请求失败'),error}//失败的值
+            // )
+
+            //精简版
+            axios.get('地址').then(
+                response => {console.log('请求成功'),response.data},//成功获取的值
+                error => {console.log('请求失败'),error}//失败的值
+            )
+        }
+
+        //获取某个人的信息--发送GET请求--携带query参数
+        btn2.onclick = () => {
+            //完整版
+            // axios({
+            //     url:'',//请求地址
+            //     method:'GET'//请求方式
+            //     params:{id:personId.value}//此处写的是params,但携带的是query参数
+            // }).then(
+            //     response => {console.log('请求成功'),response.data},//成功获取的值
+            //     error => {console.log('请求失败'),error}//失败的值
+            // )
+
+            精简版
+            axios.get('地址',{params:{id:personId.value}}).then(
+                response => {console.log('请求成功'),response.data},//成功获取的值
+                error => {console.log('请求失败'),error}//失败的值
+            )
+        }
+
+        //添加一个人的信息--发送POST请求--携带json编码或urlencoded编码参数
+        btn3.onclick = () => {
+            //完整版
+            // axios({
+            //     url:'',//请求地址
+            //     method:'POST'//请求方式
+            //     //data:{name:personName.value,age:personAge.value}//携带请求体参数（默认是json编码）
+            //     data:`name=${personName.value}&age=${personAge.value}`携带请求体参数（urlencoded编码）
+            // }).then(
+            //     response => {console.log('请求成功'),response.data},//成功获取的值
+            //     error => {console.log('请求失败'),error}//失败的值
+            // )
+
+            //精简版
+            axios.post('地址',{name:personName.value,age:personAge.value}).then(//地址后还可以拼接：`name=${personName.value}&age=${personAge.value}`
+                response => {console.log('请求成功'),response.data},//成功获取的值
+                error => {console.log('请求失败'),error}//失败的值
+            )
+        }
+
+        //更新一个人的信息--发送PUT请求--携带json编码或urlencoded编码参数
+        btn4.onclick = () => {
+            //完整版
+            // axios({
+            //     url:'',//请求地址
+            //     method:'PUT'//请求方式
+            //     data:{
+            //           id:personUpdateId.value,
+            //           name:personUpdateName.value,
+            //           age:personUpdateAge.value}
+            // }).then(
+            //     response => {console.log('请求成功'),response.data},//成功获取的值
+            //     error => {console.log('请求失败'),error}//失败的值
+            // )
+
+            //精简版
+            axios.put('地址',{
+                       id:personUpdateId.value,
+                       name:personUpdateName.value,
+                       age:personUpdateAge.value}).then(
+                response => {console.log('请求成功'),response.data},//成功获取的值
+                error => {console.log('请求失败'),error}//失败的值
+            )
+        }
+
+        //删除一个人的信息--发送DELETE请求--携带params参数
+        btn5.onclick = () => {
+            //完整版
+            // axios({
+            //     url:`地址/${personDeleteId.value}`,//请求地址
+            //     method:'DELETE'//请求方式
+            // }).then(
+            //     response => {console.log('请求成功'),response.data},//成功获取的值
+            //     error => {console.log('请求失败'),error}//失败的值
+            // )
+
+            //精简版
+            axios.delete(`地址/${personDeleteId.value}`).then(
+                response => {console.log('请求成功'),response.data},//成功获取的值
+                error => {console.log('请求失败'),error}//失败的值
+            )
+        }
+    </script>
+</body>
+</html>

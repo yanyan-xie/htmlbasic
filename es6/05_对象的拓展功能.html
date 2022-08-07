@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       //es6允许直接写入变量和函数 ，作为对象的属性和方法
+        const name = 'xz',
+            age = 18;
+        const person = {
+            name,//等价于name:name
+            age,
+            sayName(){
+                console.log(this.name);
+            }
+        }
+        person.sayName();
+
+        //名字变得情况下可拼接
+        const ame = 'a';
+        const obj = {
+            isShow:true,
+            [ame+'bc']:122,
+            ['f'+ame](){
+                console.log(this);
+            }
+        }
+        console.log(obj);
+
+        //对象的方法
+        // is() ===
+        //比较两个值是否严格相等
+        console.log(Object.is(NaN,NaN));//true
+
+        // assign()
+        //对象的合并
+        // Object.assign(target,obj1,obj2...)//把obj项目都合并到target里
+        //返回合并后的新对象
+        let o = Object.assign({},{a:1},{b:2})
+        console.log(o);
+    </script>
+</body>
+</html>

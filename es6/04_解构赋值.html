@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //解构赋值是对赋值运算符的一种拓展
+        //它针对数组和对象进行操作
+        //优点：代码书写上简介易读
+        let node = {
+            type:'dd',
+            name:'fo'
+        }
+        //es5写法
+        // let type = node.type;
+        // let name = node.name;
+        let {type,name} = node;
+        console.log(type,name);
+
+        //对数组解构
+        let arr = [1,2,3];
+        let [q,w] = arr;
+        console.log(q,w);
+        //可嵌套
+        let [a,[b],c] = [1,[2],3]
+    </script>
+</body>
+</html>

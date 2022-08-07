@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box"></div>
+    
+    <script>
+        const xbox = document.querySelector('.box');
+        let id = 1,
+            name='xiao';
+        let htmlStr = `
+            <ul>
+                <li>
+                    <p id=${id}>${name}</p>
+                </li>
+            </ul>`;
+        xbox.innerHTML = htmlStr;
+        //使用Tap键上的反引号，插入变量是为${变量名}
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //generator函数 可以通过yield关键字，将函数挂起，为了改变执行流提供了可能，同时为了做异步编程提供了方案
+        //和普通函数的区别、
+        //1.function后面 函数名之前有个*
+        //2.只能在函数内部使用yield表达式，让函数挂起
+        
+        function* func(){
+            yield 2;
+        }
+        //返回一个遍历器对象，可以调用next方法
+        let fn = fnc();
+        console.log(fn.next());
+
+        //总结：generator函数是分段执行，yield暂停执行 next()回复执行
+        
+        function* add() {
+            console.log('start');
+            // x 不是yield '2'的返回值，它是next调用  恢复当前return的返回值
+            let x = yield '2';
+            console.log('one:' + x);
+            let y = yield '3';
+            console.log('two' + y);
+            return x + y;
+        } 
+        const tn = add();
+        console.log(tn.next());//{value:'2',done:false}
+        console.log(tn.next(20));//{value:'3',done:false} 传入值赋值给x
+        console.log(tn.next(30));//y变为30
+        //使用场景：为不具有interator接口的对象提供了遍历操作
+    </script>
+</body>
+</html>

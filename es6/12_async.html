@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //使异步操作更加方便
+        //基本操作：async它会返回一个Promise对象 then catch
+        //async是Generator的一个语法糖
+        async function f(){
+            return await 'hello';//await不能单独使用
+        }
+        //如果async中有多个await 那么then函数会等待await执行完再执行
+        f().then(v=>{console.log(v)}).catch(e=>console.log(e));
+    </script>
+</body>
+</html>

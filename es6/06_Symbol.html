@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //原始数据类型symbol，它是独一无二的值
+        //最大用途：用来定义对象私有变量
+        //定义
+        const name = Symbol('name');
+        console.log(name);
+
+        let obj = {
+            [name]:'assa'
+        };
+        //如果用symbol定义的对象中的变量，取值时一定要用[变量名]
+        console.log(obj[name]);
+        //获取symbol方法：作为属性的key
+        //  (1)Object.getOwnPropertySymbols(obj)
+        //  (2)Reflect.ownKeys(obj)
+    </script>
+</body>
+</html>

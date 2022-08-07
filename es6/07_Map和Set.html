@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 集合：表示无重复值的有序列表
+    let set = new Set();
+    console.log(set);
+    
+    //添加元素 重复值会忽略
+    set.add(2);
+    set.add([1,2,3]);
+    //删除元素
+    set.delete(2);
+    //查找是否在集合中
+    console.log(set.has('4'));
+    //集合长度
+    console.log(set.size);
+
+    //将set转换成数组
+    let set2 = new Set([1,2,2,3,4,4,5])
+    //用扩展运算符
+    let arr = [...set2]
+    console.log(arr);
+
+    //set中对象无法释放，想释放用weakset
+    
+    //weakset
+    //1.不能传入非对象参数
+    //2.不可迭代
+    //3.没有forEach()
+    //4.没有size属性
+
+    //Map类型是键值对的有序列表，键和值是任意类型//(key,value) key=>value
+    let map = new Map();
+    map.set('name','zhangsan');
+    //获取值
+    console.log(map.get('name'));
+    //校验
+    console.log(map.has('name'));
+    //删除
+    map.delete('name');
+    //清除所有值
+    map.clear();
+    </script>
+</body>
+</html>

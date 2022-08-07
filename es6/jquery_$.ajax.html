@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+    <button id="btn">sousou</button>
+    <script>
+        $("#btn").click(function(){
+            $.ajax({
+                type:"get",//请求方式
+                url:"../js/data.json",//请求地址
+                data:{//请求数据,json对象
+                    username:"zhangsan"//如果没有参数，则不需要设置
+                },
+                dataType:"json",//预期返回的数据类型，如果是json格式，再返回值时会自动封装成json对象
+                //请求成功时调用的函数
+                success:function(data){//data是形参名，代表返回的数据
+                    console.log(data);//字符串
+                    //将字符串转换成Json方法
+                    //var obj = JSON.parse(data);转换成json文件
+                    var ul = $("<ul></ul>");
+                    for(var i = 0; i < data.length; i++){
+                        var user = data[i];
+                        var li = "<li>" + user.userName +"</li>";
+                        ul.append(li);
+                    }
+                    console.log(ul);
+                    $("body").append(ul);
+                }
+            })
+        })
+        
+    </script>
+</body>
+</html>

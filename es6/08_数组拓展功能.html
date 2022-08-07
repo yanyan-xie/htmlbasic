@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script>
+        //数组的方法 form() of()
+        //from() 将伪数组转换成真正的数组
+        function add(){
+            //es5转换
+            //let arr = [].slice.call(arguments);
+
+            //es6写法
+            let arr = Array.from(arguments);
+            console.log(arr);
+        }
+        add(1,2,3);
+        let lis = document.querySelectorAll('li')
+        //扩展运算符 转换成真数组
+        console.log([...lis]);
+        //from() 还可以有第二个参数，用来对每个元素进行处理
+        //ele 形参
+        // let liContents = Array.from(lis,ele => ele.textCount);
+        // console.log(liCountents);
+
+        //2.of() 将任意数据类型转换成数组
+        // console.log(Array.of(2,3,'5'));
+
+        //3.copywithin() 将数组内部指定位置元素复制到其他位置，返回到当前数组
+        //从2开始复制到最后，然后替换掉从0开始的值
+        console.log([1,2,3,8,9,10].copyWithin(0,2));
+        //[3,8,9,10,9,10]
+
+        //4.find() findIndex()
+        //find()方法是找出第一个符合条件的数组成员
+        let num = [1,2,-10,-20,9,3].find(n => n < 0)//返回数组里小于0的数
+        console.log(num);
+        
+        //findIndex()方法是找出第一个符合条件的数组成员的索引
+        let num1 = [1,2,-10,-20,9,3].findIndex(n => n < 0)
+        console.log(num1);
+
+        // entries() keys() values() 返回一个遍历器 可使用for...of进行循环
+        //keys() 对键名遍历
+        //values() 对值遍历
+        //entries() 对键值遍历
+        for(let index of ['a','b'].keys()){
+            console.log(index);//取到所有键
+        }
+
+        for(let ele of ['a','b'].keys()){
+            console.log(ele);//取到所有值
+        }
+
+        for(let [index,ele] of ['a','b'].entries()){
+            console.log(index,ele);//取到所有键和值并一一对应
+        }
+
+        //5.includes() 返回一个布尔值，表示某个数组是否包含给定的值
+        console.log([1,2,3].includes(2));
+    </script>
+</body>
+</html>

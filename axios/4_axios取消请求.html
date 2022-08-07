@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">点击获取所有人信息</button>
+    <button id="btn2">取消请求</button>
+
+    <script>
+        const btn1 = document.getElementById('btn1')
+        const btn2 = document.getElementById('btn2')
+        const {CancelToken} = axios //CancelToken能为一次请求打标记
+        let cancel
+
+        btn1.onclick = () =>{
+            axios({
+                url:'/person',//请求地址
+                method:'GET',//请求方式
+                CancelToken:new CancelToken((c)=>{//c是一个函数，调用就能关闭本次请求
+                    c()
+                })
+            }).then(
+                response => {console.log('请求成功'),response.data},//成功获取的值
+                error => {console.log('请求失败'),error}//失败的值
+            )
+        }
+
+        btn2.onclick = ()=>{
+            cancel()
+        }
+    </script>
+</body>
+</html>
